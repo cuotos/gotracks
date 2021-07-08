@@ -1,4 +1,4 @@
-package main
+package track
 
 import (
 	"fmt"
@@ -39,5 +39,10 @@ func GetCurrentTrack() (Track, error) {
 }
 
 func getFieldOfCurrentTrack(field string) (string, error) {
-	return mack.Tell("Spotify", fmt.Sprintf("%s of current track as string", field))
+	val, err := mack.Tell("Spotify", fmt.Sprintf("%s of current track as string", field))
+	if err != nil {
+		return "", err
+	}
+
+	return val, nil
 }

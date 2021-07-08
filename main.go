@@ -1,22 +1,7 @@
 package main
 
-import (
-	"log"
-)
+import "github.com/cuotos/gotracks/cmd"
 
 func main() {
-	if err := run(); err != nil {
-		log.Fatal(err)
-	}
-}
-
-func run() error {
-
-	track, err := GetCurrentTrack()
-	if err != nil {
-		return err
-	}
-
-	openUG(track)
-	return nil
+	cmd.Execute()
 }
