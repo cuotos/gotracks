@@ -13,7 +13,7 @@ const (
 	UGSearchURL = "https://www.ultimate-guitar.com/search.php"
 )
 
-var tabCmd = &cobra.Command{
+var TabCmd = &cobra.Command{
 	Use: "tab",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		ugc := UGClient{

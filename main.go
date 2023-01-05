@@ -1,7 +1,32 @@
 package main
 
-import "github.com/cuotos/gotracks/cmd"
+import (
+	"fmt"
+	"os"
+
+	"github.com/cuotos/gotracks/cmd"
+	"github.com/spf13/cobra"
+)
+
+var (
+	version = "unset"
+	commit  = "unset"
+)
+
+var rootCmd = cobra.Command{
+	Use:     "gotracks",
+	Version: fmt.Sprintf("%s-%s", version, commit),
+}
 
 func main() {
-	cmd.Execute()
+	rootCmd.AddCommand(cmd.TabCmd)
+
+	rootCmd.CompletionOptions = cobra.CompletionOptions{
+		DisableDefaultCmd: true,
+	}
+
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
 }
