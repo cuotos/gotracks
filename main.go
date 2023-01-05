@@ -19,7 +19,7 @@ var rootCmd = cobra.Command{
 }
 
 func main() {
-	rootCmd.AddCommand(cmd.TabCmd)
+	rootCmd.AddCommand(cmd.NewTabCmd())
 
 	rootCmd.CompletionOptions = cobra.CompletionOptions{
 		DisableDefaultCmd: true,
