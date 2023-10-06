@@ -63,7 +63,7 @@ func NewTabCmd() *cobra.Command {
 		RunE: OpenTab,
 	}
 
-	cmd.Flags().String("type", "all", `tab type to get`)
+	cmd.Flags().StringP("type", "t", "all", `tab type to get`)
 	cmd.Flags().Bool("dryrun", false, "print url and dont open chrome")
 	cmd.Flags().MarkHidden("dryrun")
 
