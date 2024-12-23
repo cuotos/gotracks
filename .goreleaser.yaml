@@ -25,7 +25,7 @@ archives:
       {{- else }}{{ .Arch }}{{ end }}
       {{- if .Arm }}v{{ .Arm }}{{ end }}
 brews:
-  - name: gotracks
+  - name: "{{ .ProjectName }}"
     directory: Formula
     repository:
       owner: cuotos
