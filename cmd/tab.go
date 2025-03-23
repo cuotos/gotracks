@@ -7,7 +7,6 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/andybrewer/mack"
 	"github.com/cuotos/gotracks/track"
 	"github.com/spf13/cobra"
 )
@@ -97,10 +96,8 @@ func OpenTab(cmd *cobra.Command, args []string) error {
 		return nil
 	}
 
-	_, err = mack.Tell("Google Chrome", fmt.Sprintf(`open location "%v"`, url.String()))
-
-	if err != nil {
-		return fmt.Errorf("unable to open browser: %w", err)
+	if err := openBrowser(url); err != nil {
+		return err
 	}
 	return nil
 }
