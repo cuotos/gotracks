@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"runtime/debug"
 
 	"github.com/cuotos/gotracks/cmd"
 	"github.com/spf13/cobra"
@@ -13,9 +14,17 @@ var (
 	commit  = "unset"
 )
 
+func getVersionString() string {
+	if info, ok := debug.ReadBuildInfo(); ok {
+		return info.Main.Version
+	}
+
+	return fmt.Sprintf("%s-%s", version, commit)
+}
+
 var rootCmd = cobra.Command{
 	Use:     "gotracks",
-	Version: fmt.Sprintf("%s-%s", version, commit),
+	Version: getVersionString(),
 }
 
 func main() {
