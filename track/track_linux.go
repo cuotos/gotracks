@@ -32,6 +32,15 @@ func getFieldOfCurrentTrack(field TrackFieldName) (string, error) {
 
 	metadataField := fmt.Sprintf("xesam:%s", field)
 	if fieldResult, ok := metadata[metadataField]; ok {
+		// value returns the underlying type, which might be an string or []string.
+		// the dbus stuff returns an array of strings for artist so if it does
+		// cast it to []string and get the first one
+		switch v := fieldResult.Value().(type) {
+		case []string:
+			return v[0], nil
+		case string:
+			return v, nil
+		}
 		return fieldResult.String(), nil
 	} else {
 		return "", fmt.Errorf("unable to get field %s from spotify", field)
